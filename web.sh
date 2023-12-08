@@ -30,7 +30,7 @@ echo "Redémarrage de la carte réseau => okay"
 # Création d'un dossier pour mettre un clone git
 mkdir /home/thibaud/git 
 cd /home/thibaud/git 
-clone git https://github.com/OpenClassrooms-Student-Center/ASR-P4-BeeSafe
+git clone https://github.com/OpenClassrooms-Student-Center/ASR-P4-BeeSafe
 
 # Modification des fichiers de configurations du site web
  mv */ git-web
