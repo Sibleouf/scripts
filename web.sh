@@ -9,14 +9,21 @@ echo "Installation des outils pour un serveur web => okay"
 
 # Configure la carte ethernet
 # Contenu que vous souhaitez dans le fichier "interfaces"
-contenu="address 192.168.0.26
+contenu="# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+iface eth0 inet static
+address 192.168.0.26
 netmask 255.255.255.0 
 gateway 192.168.0.1
 dns-nameserveurs 192.168.0.29 8.8.8.8
 dns-domain beesafe.co
 "
 # Chemin complet du fichier
-chemin_fichier=" /etc/network/interfaces"
+chemin_fichier="/etc/network/interfaces"
 # Création du fichier avec son contenu"
 echo -e "$contenu" | tee "$chemin_fichier" > /dev/null 
 # Afficher l'adresse IP
