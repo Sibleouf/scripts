@@ -4,7 +4,7 @@ apt update -y && apt upgrade -y  > /dev/null 2>&1
 echo "Mises à jour => okay"
 
 # Lance l'installation des outils utilisés pour le service web
-apt install -y apache2 modapache2-php git php-mysql > /dev/null 2>&1
+apt install -y apache2 php-mysql > /dev/null 2>&1
 echo "Installation des outils pour un serveur web => okay"
 
 # Configure la carte ethernet
