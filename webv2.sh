@@ -46,8 +46,8 @@ echo "<VirtualHost *:80>
     CustomLog /var/log/apache2/beesafe.co-access.log combined
 </VirtualHost>" > /etc/apache2/sites-available/beesafe.co.conf
 
-sudo a2dissite 000-default
-sudo a2ensite beesafe.co
+a2dissite 000-default
+a2ensite beesafe.co
 
 # Redémarrage du service apache2
 systemctl restart apache2
