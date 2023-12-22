@@ -18,7 +18,7 @@ iface eth0 inet static
 address 192.168.0.26
 netmask 255.255.255.0 
 gateway 192.168.0.1
-dns-nameserveurs 192.168.0.29 8.8.8.8
+dns-nameservers 192.168.0.29 8.8.8.8
 dns-domain beesafe.co
 " > /etc/network/interfaces
 
