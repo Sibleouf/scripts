@@ -90,13 +90,5 @@ systemctl restart named.service
 #Modification de résolution de DNS
 echo "domain numericable.fr
 search numericable.fr
-nameserver 192.168.0.103" > /etc/resolv.conf
-
-
-
-
-
-
-
-
-
+nameserver 192.168.0.103
+nameserver 8.8.8.8" > /etc/resolv.conf
