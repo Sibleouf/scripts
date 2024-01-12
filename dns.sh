@@ -42,6 +42,9 @@ echo "options {
 };
 " > /etc/bind/named.conf.options
 
+#Création du dossier zones
+mkdir /etc/bind/zones
+
 #Création d'un fichier de zone pour le domaine beesafe.co
 echo "$TTL    604800
 @       IN      SOA     www.beesafe.co. admin.beesafe.co. (
