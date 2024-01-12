@@ -56,7 +56,7 @@ echo "$TTL    604800
 ;
 @       IN      NS      beesafe.co.
 @       IN      A       192.168.0.103
-serveur IN      A       192.168.0.103
+www     IN      A       192.168.0.101
 " > /etc/bind/zones/db.beesafe.co
 
 #Ajouter une référence à votre fichier de zone
@@ -82,13 +82,14 @@ echo "$TTL    604800
                      604800 )       ; Negative Cache TTL
 ;
 @       IN      NS      beesafe.co.
-103     IN      PTR     beesafe.co." > /etc/bind/zones/db.192.168.0
+103     IN      PTR     beesafe.co.
+101     IN      PTR     www.beesafe.co.
+" > /etc/bind/zones/db.192.168.0
+
 
 #Redémarrage du service bind
 systemctl restart named.service
 
 #Modification de résolution de DNS
-echo "domain numericable.fr
-search numericable.fr
-nameserver 192.168.0.103
+echo "nameserver 192.168.0.103
 nameserver 8.8.8.8" > /etc/resolv.conf
