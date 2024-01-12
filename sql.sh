@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #Lance les mises à jour
-apt update -y && apt upgrade -y > /dev/nell 2>&1
+apt update -y && apt upgrade -y > /dev/null 2>&1
 
 #Lance l'installation des outils pour le service SQL
-apt install -y mariadb-server sudo > /dev/nell 2>&1
+apt install -y mariadb-server sudo > /dev/null 2>&1
 echo "Installation de Maria DB => okay"
 
 #Ajout de thibaud dans le groupe sudo
@@ -49,7 +49,5 @@ sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 systemctl restart mariadb
 
 #Modification de résolution de DNS
-echo "domain numericable.fr
-search numericable.fr
-nameserver 192.168.0.103
+echo "nameserver 192.168.0.103
 nameserver 8.8.8.8" > /etc/resolv.conf
