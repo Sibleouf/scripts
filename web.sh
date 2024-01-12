@@ -55,7 +55,7 @@ echo "<?php
 \$servername = '192.168.0.102';
 \$username = 'service';
 \$password = 'Password';
-\$dbname = "beesafe";
+\$dbname ='beesafe';
 ?>" > /var/www/ASR-P4-BeeSafe/vars.php
 
 #Modification de résolution de DNS
