@@ -4,8 +4,8 @@
 apt update -y && apt upgrade -y > /dev/nell 2>&1
 
 #Lance l'installation des outils pour le service WEB
-apt install -y apache2 libapache2-mod-php php-mysql sudo 
-echo "Installation des outils pour un serveur web => okay" > /dev/nell 2>&1
+apt install -y apache2 libapache2-mod-php php-mysql sudo > /dev/nell 2>&1
+echo "Installation des outils pour un serveur web => okay"
 
 #Ajout de thibaud dans le groupe sudo
 gpasswd -a thibaud sudo
@@ -52,13 +52,13 @@ systemctl restart apache2
 
 #Modification du fichier vars.php pour intégrer la base de données mysql
 echo "<?php
-$servername = "192.168.0.102";
-$username = 'service';
-$password = 'Password';
-$dbname = "beesafe";
+\$servername = "192.168.0.102";
+\$username = 'service';
+\$password = 'Password';
 ?>" > /var/www/ASR-P4-BeeSafe/vars.php
 
 #Modification de résolution de DNS
 echo "domain numericable.fr
 search numericable.fr
-nameserver 192.168.0.103" > /etc/resolv.conf
+nameserver 192.168.0.103
+nameserver 8.8.8.8" > /etc/resolv.conf
