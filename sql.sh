@@ -4,8 +4,11 @@
 apt update -y && apt upgrade -y > /dev/nell 2>&1
 
 #Lance l'installation des outils pour le service SQL
-apt install -y mariadb-server > /dev/nell 2>&1
+apt install -y mariadb-server sudo > /dev/nell 2>&1
 echo "Installation de Maria DB => okay"
+
+#Ajout de thibaud dans le groupe sudo
+gpasswd -a thibaud sudo
 
 #Configuration du adresse IP fixe
 echo "# The loopback network interface
@@ -32,12 +35,21 @@ git checkout sql
 
 #Création d'un compte et d'une base de données mysql
 mysql -e "CREATE DATABASE beesafe;"
-mysql -e "GRANT ALL ON beesafe.* TO 'service'@'192.168.0.101' identified by 'Buellxb984r';"
+mysql -e "GRANT ALL ON beesafe.* TO 'service'@'192.168.0.101' identified by 'Password';"
 
 
 #Charger les fichiers de configurations dans la nouvealle base de données
 mysql beesafe < /home/thibaud/ASR-P4-BeeSafe/sql/schema.sql
 mysql beesafe < /home/thibaud/ASR-P4-BeeSafe/sql/data.sql
 
+#Modifier les autorisations d'accès de la base de données
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 
+#Redémarrage du service Maridb
+systemctl restart mariadb
 
+#Modification de résolution de DNS
+echo "domain numericable.fr
+search numericable.fr
+nameserver 192.168.0.103
+nameserver 8.8.8.8" > /etc/resolv.conf
