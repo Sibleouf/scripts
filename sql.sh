@@ -36,7 +36,7 @@ git checkout sql
 #Création d'un compte et d'une base de données mysql
 mysql -e "CREATE DATABASE beesafe;"
 mysql -e "GRANT ALL ON beesafe.* TO 'service'@'192.168.0.101' identified by 'Password';"
-
+mysql -e "FLUSH PRIVILEGES;"
 
 #Charger les fichiers de configurations dans la nouvealle base de données
 mysql beesafe < /home/thibaud/ASR-P4-BeeSafe/sql/schema.sql
