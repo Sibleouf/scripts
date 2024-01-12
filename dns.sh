@@ -27,7 +27,7 @@ echo "Redémarrage carte réseau"
 echo "IP = $(hostname -I)"
 
 #Configuration des options global de Bind
-echo "options {
+echo 'options {
         directory "/var/cache/bind";
 
         forwarders {
@@ -40,27 +40,27 @@ echo "options {
         auth-nxdomain no;    # conform to RFC1035
         listen-on-v6 { any; };
 };
-" > /etc/bind/named.conf.options
+' > /etc/bind/named.conf.options
 
 #Création du dossier zones
 mkdir /etc/bind/zones
 
 #Création d'un fichier de zone pour le domaine beesafe.co
 echo "$TTL    604800
-@       IN      SOA     www.beesafe.co. admin.beesafe.co. (
+@       IN      SOA     beesafe.co. admin.beesafe.co. (
                      2021122801         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
-@       IN      NS      www.beesafe.co.
+@       IN      NS      beesafe.co.
 @       IN      A       192.168.0.103
 serveur IN      A       192.168.0.103
-" > /etc/bind/zones/beesafe.co
+" > /etc/bind/zones/db.beesafe.co
 
 #Ajouter une référence à votre fichier de zone
-echo "zone "beesafe.co" {
+echo 'zone "beesafe.co" {
     type master;
     file "/etc/bind/zones/db.beesafe.co";
 };
@@ -69,20 +69,20 @@ zone "0.168.192.in-addr.arpa" {
     type master;
     file "/etc/bind/zones/db.192.168.0";
 };
-" > /etc/bind/named.conf.local
+' > /etc/bind/named.conf.local
 
 #Création d'une zone inversée
 
 echo "$TTL    604800
-@       IN      SOA     www.beesafe.co. admin.beesafe.co. (
+@       IN      SOA     beesafe.co. admin.beesafe.co. (
                  2021122801         ; Serial
                      604800         ; Refresh
                       86400         ; Retry
                     2419200         ; Expire
                      604800 )       ; Negative Cache TTL
 ;
-@       IN      NS      www.beesafe.co.
-103     IN      PTR     www.beesafe.co." > /etc/bind/zones/db.192.168.0
+@       IN      NS      beesafe.co.
+103     IN      PTR     beesafe.co." > /etc/bind/zones/db.192.168.0
 
 #Redémarrage du service bind
 systemctl restart named.service
