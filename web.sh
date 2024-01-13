@@ -4,7 +4,7 @@
 apt update -y && apt upgrade -y > /dev/nell 2>&1
 
 #Lance l'installation des outils pour le service DNS
-apt install -y bind9 sudo > /dev/nell 2>&1
+apt install -y bind9 sudo git > /dev/nell 2>&1
 
 #Ajout de thibaud dans le groupe sudo
 gpasswd -a thibaud sudo
