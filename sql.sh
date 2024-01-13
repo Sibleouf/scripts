@@ -4,7 +4,7 @@
 apt update -y && apt upgrade -y > /dev/null 2>&1
 
 #Lance l'installation des outils pour le service SQL
-apt install -y mariadb-server sudo > /dev/null 2>&1
+apt install -y mariadb-server sudo git > /dev/null 2>&1
 echo "Installation de Maria DB => okay"
 
 #Ajout de thibaud dans le groupe sudo
