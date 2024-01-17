@@ -51,12 +51,12 @@ rm /etc/apache2/sites-enabled/000-default.conf
 systemctl restart apache2
 
 #Modification du fichier vars.php pour intégrer la base de données mysql
-echo "<?php
-\$servername = '192.168.0.102';
-\$username = 'service';
-\$password = 'Password';
-\$dbname = 'beesafe';
-?>" > /var/www/ASR-P4-BeeSafe/vars.php
+echo '<?php
+$servername = "192.168.0.102";
+$username = "service";
+$password = "Password";
+$dbname = "beesafe";
+?>' > /var/www/ASR-P4-BeeSafe/vars.php
 
 #Modification de résolution de DNS
 echo "nameserver 192.168.0.103
