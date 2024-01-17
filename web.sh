@@ -16,7 +16,7 @@ auto lo
 iface lo inet loopback
 
 # The primary network interface
-allow-hotplug eth0
+echo "allow-hotplug eth0
 iface eth0 inet static
 address 192.168.0.101
 netmask 255.255.255.0 
