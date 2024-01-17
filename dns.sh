@@ -59,20 +59,7 @@ echo "$TTL    604800
 www     IN      A       192.168.0.101
 " > /etc/bind/zones/db.beesafe.co
 
-#Ajouter une référence à votre fichier de zone
-echo 'zone "beesafe.co" {
-    type master;
-    file "/etc/bind/zones/db.beesafe.co";
-};
-
-zone "0.168.192.in-addr.arpa" {
-    type master;
-    file "/etc/bind/zones/db.192.168.0";
-};
-' > /etc/bind/named.conf.local
-
 #Création d'une zone inversée
-
 echo "$TTL    604800
 @       IN      SOA     beesafe.co. admin.beesafe.co. (
                  2021122801         ; Serial
@@ -86,6 +73,17 @@ echo "$TTL    604800
 101     IN      PTR     www.beesafe.co.
 " > /etc/bind/zones/db.192.168.0
 
+#Ajouter une référence à votre fichier de zone
+echo 'zone "beesafe.co" {
+    type master;
+    file "/etc/bind/zones/db.beesafe.co";
+};
+
+zone "0.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/db.192.168.0";
+};
+' > /etc/bind/named.conf.local
 
 #Redémarrage du service bind
 systemctl restart named.service
