@@ -41,6 +41,7 @@ echo 'options {
         listen-on-v6 { any; };
 };
 ' > /etc/bind/named.conf.options
+echo "Configuration des options global de Bind => okay"
 
 #Création du dossier zones
 mkdir /etc/bind/zones
@@ -58,6 +59,7 @@ echo "$TTL    604800
 @       IN      A       192.168.0.103
 www     IN      A       192.168.0.101
 " > /etc/bind/zones/db.beesafe.co
+echo "Création d'un fichier de zone pour le domaine beesafe.co => okay"
 
 #Création d'une zone inversée
 echo "$TTL    604800
@@ -72,6 +74,7 @@ echo "$TTL    604800
 103     IN      PTR     beesafe.co.
 101     IN      PTR     www.beesafe.co.
 " > /etc/bind/zones/db.192.168.0
+echo "Création d'une zone inversée => okay"
 
 #Ajouter une référence à votre fichier de zone
 echo 'zone "beesafe.co" {
@@ -84,9 +87,11 @@ zone "0.168.192.in-addr.arpa" {
     file "/etc/bind/zones/db.192.168.0";
 };
 ' > /etc/bind/named.conf.local
+echo "Ajouter les références à votre fichier de zone => okay"
 
 #Redémarrage du service bind
 systemctl restart named.service
+echo "Redémarrage du service bind9 => okay"
 
 #Modification de résolution de DNS
 echo "nameserver 192.168.0.103
