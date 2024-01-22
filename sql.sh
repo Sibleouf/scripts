@@ -37,16 +37,20 @@ git checkout sql
 mysql -e "CREATE DATABASE beesafe;"
 mysql -e "GRANT ALL ON beesafe.* TO 'service'@'192.168.0.101' identified by 'Password';"
 mysql -e "FLUSH PRIVILEGES;"
+echo "Création de la base de donnée 'beesafe' de l'utilisateur 'service' avec comme mot de passe 'Password' => okay"
 
 #Charger les fichiers de configurations dans la nouvealle base de données
 mysql beesafe < /home/thibaud/ASR-P4-BeeSafe/sql/schema.sql
 mysql beesafe < /home/thibaud/ASR-P4-BeeSafe/sql/data.sql
+echo "Charger les fichiers de configurations dans la nouvealle base de données => okay"
 
 #Modifier les autorisations d'accès de la base de données
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
+echo "Modification de l'autorisation d'accès de la base de données de 127.0.0.1 à 0.0.0.0 => okay"
 
 #Redémarrage du service Maridb
 systemctl restart mariadb
+echo "Redémarrage du service Maridb => okay"
 
 #Modification de résolution de DNS
 echo "nameserver 192.168.0.103
