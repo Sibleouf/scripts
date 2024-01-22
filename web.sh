@@ -44,11 +44,15 @@ echo "<VirtualHost *:80>
     ErrorLog /var/log/apache2/beesafe.co-error.log
     CustomLog /var/log/apache2/beesafe.co-access.log combined
 </VirtualHost>" > /etc/apache2/sites-available/beesafe.co.conf
+echo "Configuration du VirtualHost beesafe.co pointant à /var/www/ASR-P4-BeeSafe => okay"
 
 #Création d'un lien symbolique du site beesafe.co et supperssion de 000-defaut.conf
 ln -s /etc/apache2/sites-available/beesafe.co.conf /etc/apache2/sites-enabled/
+echo "Création d'un lien symbolique du site beesafe.co => okay"
 rm /etc/apache2/sites-enabled/000-default.conf
+echo "Supperssion de la configuration par défaut 000-defaut.conf => okay"
 systemctl restart apache2
+echo "Redémarrage du service apache2 => okay"
 
 #Modification du fichier vars.php pour intégrer la base de données mysql
 echo '<?php
@@ -57,6 +61,7 @@ $username = "service";
 $password = "Password";
 $dbname = "beesafe";
 ?>' > /var/www/ASR-P4-BeeSafe/vars.php
+echo "Modification du fichier vars.php pour intégrer la base de données mysql => okay"
 
 #Modification de résolution de DNS
 echo "nameserver 192.168.0.103
