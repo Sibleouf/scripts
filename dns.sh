@@ -48,7 +48,7 @@ mkdir /etc/bind/zones
 #Création d'un fichier de zone pour le domaine beesafe.co
 echo "$TTL    604800
 @       IN      SOA     beesafe.co. admin.beesafe.co. (
-                     2021122801         ; Serial
+                     2024011901         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
@@ -62,7 +62,7 @@ www     IN      A       192.168.0.101
 #Création d'une zone inversée
 echo "$TTL    604800
 @       IN      SOA     beesafe.co. admin.beesafe.co. (
-                 2021122801         ; Serial
+                 2024011901         ; Serial
                      604800         ; Refresh
                       86400         ; Retry
                     2419200         ; Expire
