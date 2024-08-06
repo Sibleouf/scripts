@@ -10,7 +10,7 @@ echo "Installation des outils pour un serveur web => okay"
 #Ajout de thibaud dans le groupe sudo
 gpasswd -a thibaud sudo
 
-#Configuration du adresse IP fixe
+#Configuration de l'adresse IP fixe
 echo "# The loopback network interface
 auto lo
 iface lo inet loopback
